@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
+    <title>DataViz – Input</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<!-- ===== FIXED NAVBAR ===== -->
+    <nav class="navbar">
+        <a href="/" class="nav-logo"> 💻 <span>DataViz</span></a>
+        <ul class="nav-menu">
+            <li><a href="/">Home</a></li>
+            <li><a href="#">About</a></li>
+        </ul>
+    </nav>
+
+    <!-- ===== MAIN FORM CONTAINER ===== -->
+    <div class="container">
+        <h1>Upload or Paste Your Data</h1>
+        <p class="subtitle">
+            Aggregate, visualise, and map your CSV data in seconds.
+        </p>
+
+        <!-- FORM: enctype must be multipart for file upload -->
+        <form method="POST" action="/" enctype="multipart/form-data">
+
+            <!-- 1) FILE UPLOAD -->
+            <div class="form-group">
+                <label for="fileUpload">📁 Upload CSV File</label>
+                <input type="file" name="file" id="fileUpload" accept=".csv">
+                <p class="help-text">Accepts .csv with headers.</p>
+            </div>
+
+            <!-- DIVIDER -->
+            <div class="divider">OR</div>
+
+            <!-- 2) TEXTAREA PASTE -->
+            <div class="form-group">
+                <label for="dataPaste"> Paste CSV Data</label>
+                <textarea name="data" id="dataPaste" placeholder="Region,Sales,Year&#10;North,1200,2024&#10;South,980,2024&#10;East,1500,2024"></textarea>
+                <p class="help-text">Comma‑separated values, first row as column headers.</p>
+            </div>
+
+            <!-- 3) GROUP & VALUE COLUMNS (row) -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="groupCol">Group by <span class="required">*</span></label>
+                    <input type="text" name="group_col" id="groupCol" placeholder="e.g. Region" required>
+                </div>
+                <div class="form-group">
+                    <label for="valueCol">Value column <span class="required">*</span></label>
+                    <input type="text" name="value_col" id="valueCol" placeholder="e.g. Sales" required>
+                </div>
+            </div>
+
+            <!-- 4) AGGREGATION & CHART TYPE (row) -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="aggFunc">Aggregation <span class="required">*</span></label>
+                    <select name="agg_func" id="aggFunc" required>
+                        <option value="sum">Sum</option>
+                        <option value="mean">Mean (Average)</option>
+                        <option value="count">Count</option>
+                        <option value="min">Minimum</option>
+                        <option value="max">Maximum</option>
+                        <option value="std">Standard Deviation</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="chartType">Chart type <span class="required">*</span></label>
+                    <select name="chart_type" id="chartType" required>
+                        <option value="bar">Bar Chart</option>
+                        <option value="pie">Pie Chart</option>
+                        <option value="line">Line Chart</option>
+                        <option value="scatter">Scatter Plot</option>
+                    </select>
+                </div>
+            </div>
+            
+            {% if error %}
+                <div style="background:#fed7d7; color:#9b2c2c; padding:0.8rem 1.2rem; border-radius:10px; margin-bottom:1.2rem; border-left:5px solid #e53e3e;">
+                    ⚠️ {{ error }}
+                </div>
+            {% endif %}
+
+            <!-- 6) SUBMIT -->
+            <button type="submit" class="btn-submit">Analyse Data</button>
+
+        </form>
+    </div>
+
+</body>
+</html>
+</body>

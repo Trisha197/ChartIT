@@ -1,0 +1,73 @@
+!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
+    <title>DataViz – Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <!-- ===== FIXED NAVBAR (identical to index) ===== -->
+    <nav class="navbar">
+        <a href="/" class="nav-logo">📊 <span>DataViz</span> Pro</a>
+        <ul class="nav-menu">
+            <li><a href="/">Home</a></li>
+            <li><a href="#">About</a></li>
+        </ul>
+    </nav>
+
+    <!-- ===== RESULTS CONTAINER ===== -->
+    <div class="container">
+
+        <!-- Header -->
+        <div class="header-section">
+            <h1> Analysis Results</h1>
+            <span class="badge">✔ Aggregation complete</span>
+        </div>
+
+       <!-- Chart -->
+        <div class="visualisation">
+            {% if plot %}
+                {{ plot|safe }}
+            {% else %}
+                <div class="empty-state">
+                    <h3>🙈 No chart generated</h3>
+                    <p>Please go back and submit your data again.</p>
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- ===== AGGREGATED DATA TABLE ===== -->
+        {% if table %}
+            <div class="table-wrapper">
+                <h3> Aggregated Data</h3>
+                <!-- table is passed as an HTML string from pandas.to_html() -->
+                {{ table|safe }}
+            </div>
+        {% endif %}
+
+        <!-- ===== ACTION BUTTONS ===== -->
+        <div class="actions">
+            <a href="/" class="btn btn-primary">⟵ Back to Input</a>
+
+            {% if plot or table %}
+                <!-- Simple print/download via browser's print dialog (user can save as PDF) -->
+                <button class="btn btn-secondary" onclick="window.print()">🖨️ Print / Save as PDF</button>
+            {% endif %}
+
+            <!-- Placeholder for a future "Download CSV" feature -->
+            <a href="#" class="btn btn-download" style="opacity:0.6; pointer-events:none;">
+                ⬇ Download CSV (coming soon)
+            </a>
+        </div>
+
+        <!-- Small footer note -->
+        <p style="text-align:center; color:#a0aec0; font-size:0.85rem; margin-top:2.2rem; border-top:1px solid #edf2f7; padding-top:1.2rem;">
+            Data is processed in real‑time — no data is stored permanently.
+        </p>
+    </div>
+
+</body>
+</html>

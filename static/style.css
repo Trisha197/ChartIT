@@ -1,0 +1,464 @@
+/* ===== static/style.css ===== */
+/* Full stylesheet for DataViz Pro – pale blue + lemon yellow + navy */
+
+/* ---------- CSS Variables (easy theming) ---------- */
+:root {
+    --navy: #0a2540;
+    --navy-light: #1a365d;
+    --pale-blue: #b0d1f9;
+    --pale-blue-dark: #6f98b9;
+    --lemon: #feec86;
+    --lemon-hover: #ffe359;
+    --white: #ffffff;
+    --text-dark: #0a2540;
+    --text-light: #e2e8f0;
+    --shadow: 0 8px 30px rgba(10, 37, 64, 0.10);
+    --radius: 16px;
+    --radius-sm: 10px;
+}
+
+/* ---------- Global Reset & Base ---------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--pale-blue);
+    color: var(--text-dark);
+    padding-top: 80px;          /* space for fixed navbar */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    line-height: 1.5;
+}
+
+/* ---------- Fixed Blurry Navbar ---------- */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(10, 37, 64, 0.82);   /* navy with transparency */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);  /* Safari support */
+    padding: 0.8rem 2.5rem;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.18);
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.nav-logo {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--white);
+    text-decoration: none;
+    letter-spacing: -0.3px;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.nav-logo span {
+    color: var(--lemon);
+}
+
+.nav-menu {
+    list-style: none;
+    display: flex;
+    gap: 2.2rem;
+    align-items: center;
+}
+
+.nav-menu li a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 1.05rem;
+    font-weight: 500;
+    transition: color 0.2s ease;
+    padding: 0.3rem 0;
+    border-bottom: 2px solid transparent;
+}
+
+.nav-menu li a:hover {
+    color: var(--lemon);
+    border-bottom-color: var(--lemon);
+}
+
+/* ---------- Main Container (card) ---------- */
+.container {
+    background: var(--white);
+    max-width: 860px;
+    width: 100%;
+    margin: 1.5rem 2rem 3rem 2rem;
+    padding: 2.5rem 3rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(10, 37, 64, 0.04);
+}
+
+/* wider container for results page */
+.container.wide {
+    max-width: 1100px;
+}
+
+/* ---------- Typography ---------- */
+h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 0.2rem;
+}
+
+.subtitle {
+    color: #4a6a8b;
+    margin-bottom: 2rem;
+    font-size: 1.05rem;
+    border-left: 5px solid var(--lemon);
+    padding-left: 1.2rem;
+    background: rgba(249, 215, 28, 0.08);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+/* ---------- Form Elements ---------- */
+.form-group {
+    margin-bottom: 1.6rem;
+}
+
+.form-row {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.form-row .form-group {
+    flex: 1 1 200px;
+}
+
+label {
+    display: block;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 0.4rem;
+    color: var(--navy);
+}
+
+label .required {
+    color: #c53030;
+    margin-left: 2px;
+}
+
+input[type="file"],
+input[type="text"],
+textarea,
+select {
+    width: 100%;
+    padding: 0.7rem 1rem;
+    border: 1.5px solid var(--pale-blue-dark);
+    border-radius: var(--radius-sm);
+    font-size: 0.95rem;
+    background: var(--pale-blue);
+    transition: border 0.2s, box-shadow 0.2s, background 0.2s;
+    font-family: inherit;
+    color: var(--text-dark);
+}
+
+input[type="file"] {
+    padding: 0.5rem 0.7rem;
+    background: var(--white);
+}
+
+input[type="text"]:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: var(--lemon);
+    box-shadow: 0 0 0 4px rgba(249, 215, 28, 0.25);
+    background: var(--white);
+}
+
+textarea {
+    min-height: 110px;
+    resize: vertical;
+}
+
+/* ---------- Checkbox ---------- */
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    margin-top: 0.3rem;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    accent-color: var(--lemon);
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.checkbox-group label {
+    margin-bottom: 0;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.help-text {
+    font-size: 0.85rem;
+    color: #6b8baa;
+    margin-top: 0.25rem;
+}
+
+/* ---------- Divider ---------- */
+.divider {
+    display: flex;
+    align-items: center;
+    color: #a0b8cc;
+    font-weight: 500;
+    margin: 1.8rem 0 1.5rem 0;
+}
+
+.divider::before,
+.divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--pale-blue-dark);
+}
+
+.divider::before {
+    margin-right: 1.2rem;
+}
+
+.divider::after {
+    margin-left: 1.2rem;
+}
+
+/* ---------- Buttons ---------- */
+.btn-submit {
+    background: var(--lemon);
+    color: var(--navy);
+    border: none;
+    padding: 0.9rem 2.8rem;
+    font-size: 1.15rem;
+    font-weight: 700;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+    width: 100%;
+    margin-top: 0.5rem;
+    letter-spacing: 0.3px;
+    box-shadow: 0 4px 12px rgba(249, 215, 28, 0.35);
+}
+
+.btn-submit:hover {
+    background: var(--lemon-hover);
+    box-shadow: 0 6px 20px rgba(249, 215, 28, 0.45);
+}
+
+.btn-submit:active {
+    transform: scale(0.97);
+}
+
+/* action buttons on results page */
+.actions {
+    display: flex;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid var(--pale-blue);
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.7rem 2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+    border: none;
+    cursor: pointer;
+    background: var(--pale-blue);
+    color: var(--navy);
+}
+
+.btn-primary {
+    background: var(--navy);
+    color: var(--white);
+    box-shadow: 0 2px 8px rgba(10, 37, 64, 0.20);
+}
+
+.btn-primary:hover {
+    background: var(--navy-light);
+    box-shadow: 0 4px 14px rgba(10, 37, 64, 0.30);
+}
+
+.btn-secondary {
+    background: var(--pale-blue-dark);
+    color: var(--navy);
+}
+
+.btn-secondary:hover {
+    background: #c4d9ed;
+}
+
+.btn-download {
+    background: var(--lemon);
+    color: var(--navy);
+    box-shadow: 0 2px 8px rgba(249, 215, 28, 0.30);
+}
+
+.btn-download:hover {
+    background: var(--lemon-hover);
+}
+
+/* disabled/coming-soon state */
+.btn-download[style*="pointer-events:none"] {
+    opacity: 0.6;
+    cursor: default;
+    box-shadow: none;
+}
+
+/* ---------- Results Page Specific ---------- */
+.header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 1.8rem;
+    border-bottom: 2px solid var(--pale-blue);
+    padding-bottom: 1.2rem;
+}
+
+.badge {
+    background: var(--lemon);
+    color: var(--navy);
+    font-weight: 700;
+    padding: 0.4rem 1.2rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    border: 1px solid rgba(10, 37, 64, 0.08);
+}
+
+.visualisation {
+    background: var(--pale-blue);
+    border-radius: var(--radius-sm);
+    padding: 1.5rem 1rem;
+    margin: 1.8rem 0;
+    border: 1px solid #d6e4f0;
+    overflow-x: auto;
+}
+
+.visualisation iframe,
+.visualisation div {
+    width: 100% !important;
+}
+
+/* ---------- Table ---------- */
+.table-wrapper {
+    margin: 2rem 0 1.5rem 0;
+    overflow-x: auto;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--pale-blue-dark);
+}
+
+.table-wrapper h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 1rem 1.5rem 0.2rem 1.5rem;
+    color: var(--navy);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+table thead {
+    background: var(--pale-blue);
+}
+
+table th {
+    text-align: left;
+    padding: 0.8rem 1.5rem;
+    font-weight: 600;
+    color: var(--navy);
+    border-bottom: 2px solid var(--pale-blue-dark);
+}
+
+table td {
+    padding: 0.7rem 1.5rem;
+    border-bottom: 1px solid var(--pale-blue);
+}
+
+table tbody tr:hover {
+    background: var(--pale-blue);
+}
+
+/* ---------- Empty state ---------- */
+.empty-state {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: #7a9bb8;
+}
+
+.empty-state h3 {
+    font-size: 1.5rem;
+    color: var(--navy);
+    margin-bottom: 0.5rem;
+}
+
+/* ---------- Footer note ---------- */
+.footer-note {
+    text-align: center;
+    color: #7a9bb8;
+    font-size: 0.85rem;
+    margin-top: 2.2rem;
+    border-top: 1px solid var(--pale-blue);
+    padding-top: 1.2rem;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 640px) {
+    .navbar {
+        padding: 0.6rem 1.2rem;
+        flex-wrap: wrap;
+    }
+    .nav-menu {
+        gap: 1.2rem;
+    }
+    .nav-logo {
+        font-size: 1.3rem;
+    }
+    .container {
+        padding: 1.8rem 1.2rem;
+        margin: 1rem 0.8rem 2rem 0.8rem;
+    }
+    .form-row {
+        gap: 0.8rem;
+    }
+    h1 {
+        font-size: 1.6rem;
+    }
+    .header-section {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.6rem;
+    }
+    .actions {
+        flex-direction: column;
+    }
+    .actions .btn {
+        text-align: center;
+    }
+}
